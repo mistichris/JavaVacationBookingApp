@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author christophersaid - csaid
@@ -12,6 +14,8 @@ import jakarta.persistence.Id;
  * Mar 7, 2024
  */
 @Entity
+@Data
+@NoArgsConstructor
 public class Destination {
 	@Id
 	@GeneratedValue
@@ -21,10 +25,6 @@ public class Destination {
 	private double price;
 	@Autowired
 	private Location location;
-	
-	public Destination() {
-		
-	}
 	
 	public Destination(String name) {
 		this.name = name;
@@ -41,51 +41,5 @@ public class Destination {
 		this.name = name;
 		this.type = type;
 		this.price = price;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-
-	@Override
-	public String toString() {
-		return "Destination [id=" + id + ", name=" + name + ", type=" + type + ", price=" + price + ", location="
-				+ location + "]";
 	}
 }

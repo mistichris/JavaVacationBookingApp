@@ -16,36 +16,36 @@ import main.controller.BeanConfiguration;
 import main.repository.DestinationRepository;
 
 @SpringBootApplication
-public class VacationDestinationsApplication implements CommandLineRunner {
+public class VacationDestinationsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VacationDestinationsApplication.class, args);
 	}
 	
-	@Autowired
-	DestinationRepository repo;
-	
-	@Override
-	public void run(String... args) throws Exception {
-		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
-		
-		Destination saktiDest = appContext.getBean("destination", Destination.class);
-		saktiDest.setName("Sakti");
-		saktiDest.setType("Full Local");
-		saktiDest.setPrice(5000.00);
-		
-		Location saktiLoc = new Location(null, "Sakti", "Ladakh", "India");
-		
-		saktiDest.setLocation(saktiLoc);
-		
-		repo.save(saktiDest);
-		
-		List<Destination> allDestinations = repo.findAll();
-		for(Destination dest : allDestinations) {
-			System.out.println(dest.toString());
-		}
-		
-		((AbstractApplicationContext) appContext).close();
-	}
+//	@Autowired
+//	DestinationRepository repo;
+//	
+//	@Override
+//	public void run(String... args) throws Exception {
+//		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+//		
+//		Destination saktiDest = appContext.getBean("destination", Destination.class);
+//		saktiDest.setName("Sakti");
+//		saktiDest.setType("Full Local");
+//		saktiDest.setPrice(5000.00);
+//		
+//		Location saktiLoc = new Location(null, "Sakti", "Ladakh", "India");
+//		
+//		saktiDest.setLocation(saktiLoc);
+//		
+//		repo.save(saktiDest);
+//		
+//		List<Destination> allDestinations = repo.findAll();
+//		for(Destination dest : allDestinations) {
+//			System.out.println(dest.toString());
+//		}
+//		
+//		((AbstractApplicationContext) appContext).close();
+//	}
 
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View All Destinations</title>
+</head>
+<body>
+
+	<form>
+	
+		<table>
+		
+			<tr th:each="currentDest : ${destinations}">
+				<td th:text="${currentDest.id}"></td>
+				<td th:text="${currentDest.name}"></td>
+				<td th:text="${currentDest.type}"></td>
+				<td th:text="${currentDest.price}"></td>
+				<td th:text="${currentDest.location.streetAddress}"></td>
+				<td th:text="${currentDest.location.city}"></td>
+				<td th:text="${currentDest.location.state}"></td>
+				<td th:text="${currentDest.location.country}"></td>
+				<td><a th:href="@{/edit/{id}(id=${currentDest.id})}">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${currentDest.id})}">Delete</a></td>
+			</tr>
+		
+		</table>
+	
+	</form>
+	
+	<a href="../inputDestination">Add a new destination</a>
+</body>
+</html>
