@@ -3,20 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert New Or Edit Destination</title>
+<script>
+	
+	function validateFields() {
+		
+		let validForm = true;
+		document.querySelector("#nameField").style.borderColor = "revert";
+		document.querySelector("#typeField").style.borderColor = "revert";
+		document.querySelector("#priceField").style.borderColor = "revert";
+		document.querySelector("#stAddField").style.borderColor = "revert";
+		document.querySelector("#cityField").style.borderColor = "revert";
+		document.querySelector("#stateField").style.borderColor = "revert";
+		document.querySelector("#countryField").style.borderColor = "revert";
+		
+		if (document.querySelector("#nameField").value === "" || document.querySelector("#nameField").value === null) {
+			document.querySelector("#nameField").style.borderColor = "red";
+			validForm = false;
+		}
+		
+		if (document.querySelector("#typeField").value === "" || document.querySelector("#typeField")=== null) {
+			document.querySelector("#typeField").style.borderColor = "red";
+			validForm = false;
+		}
+		
+		if (document.querySelector("#priceField").value <= 0 || document.querySelector("#priceField").value === "" || document.querySelector("#priceField").value === null || isNaN(document.querySelector("#priceField").value)) {
+			document.querySelector("#priceField").style.borderColor = "red";
+			validForm = false;
+		}
+		
+		if (document.querySelector("#stAddField").value === "" || document.querySelector("#stAddField").value === null) {
+			document.querySelector("#stAddField").style.borderColor = "red";
+			validForm = false;
+		}
+		
+		if (document.querySelector("#cityField").value === "" || document.querySelector("#cityField").value === null) {
+			document.querySelector("#cityField").style.borderColor = "red";
+			validForm = false;
+		}
+		
+		if (document.querySelector("#stateField").value === "" || document.querySelector("#stateField").value === null) {
+			document.querySelector("#stateField").style.borderColor = "red";
+			validForm = false;
+		}
+		
+		if (document.querySelector("#countryField").value === "" || document.querySelector("#countryField").value === null) {
+			document.querySelector("#countryField").style.borderColor = "red";
+			validForm = false;
+		}
+		
+		if (validForm) {
+			document.querySelector("#form").submit();
+			document.querySelector("#form").reset();
+			cleanUp();
+		}
+	}
+	
+	function cleanUp() {
+		document.querySelector("#nameField").style.borderColor = "revert";
+		document.querySelector("#typeField").style.borderColor = "revert";
+		document.querySelector("#priceField").style.borderColor = "revert";
+		document.querySelector("#stAddField").style.borderColor = "revert";
+		document.querySelector("#cityField").style.borderColor = "revert";
+		document.querySelector("#stateField").style.borderColor = "revert";
+		document.querySelector("#countryField").style.borderColor = "revert";
+	}
+</script>
+
 </head>
 <body>
 
-	<form th:object="${newDestination}" th:action="@{/update/{id}(id=${newDestination.id})}" method='POST'>
+	<form id="form" th:object="${newDestination}" th:action="@{/update/{id}(id=${newDestination.id})}" method='POST'>
 	
-		Name: <input name="name" size="20" th:field="*{name}"> <br>
-		Type: <input name="type" size="20" th:field="*{type}"> <br>
-		Price: <input name="price" size="20" th:field="*{price}"> <br>
-		Street Address: <input name="location.streetAddress" size="20" th:field="*{location.streetAddress}"> <br>
-		City: <input name="location.city" size="20" th:field="*{location.city}"> <br>
-		State: <input name="location.state" size="20" th:field="*{location.state}"> <br>
-		Country: <input name="location.country" size="20" th:field="*{location.country}"> <br>
+		Name: <input id="nameField" name="name" size="20" th:field="*{name}"> <br>
+		Type: <input id="typeField" name="type" size="20" th:field="*{type}"> <br>
+		Price: <input id="priceField" name="price" size="20" th:field="*{price}"> <br>
+		Street Address: <input id="stAddField" name="location.streetAddress" size="20" th:field="*{location.streetAddress}"> <br>
+		City: <input id="cityField" name="location.city" size="20" th:field="*{location.city}"> <br>
+		State: <input id="stateField" name="location.state" size="20" th:field="*{location.state}"> <br>
+		Country: <input id="countryField" name="location.country" size="20" th:field="*{location.country}"> <br>
 		
-		<input name="submit" type="submit" value="submit">
+		<input name="submitBtn" type="button" value="submitBtn" onclick="validateFields()">
+		<input name="reset" type="reset" value="reset" onclick="cleanUp()">
 	
 	</form>
 
